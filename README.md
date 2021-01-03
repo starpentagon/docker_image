@@ -54,3 +54,6 @@ $ ./docker_run.sh
 ## 外部からの接続
 外部からブラウザで http://(ホスト側のIPアドレス):8888 にアクセスするとJupyter notebookに接続できます。
 
+## 参考
+使い方は[こちら](https://starpentagon.net/analytics/jupyter_notebook_docker/)でも解説しています。
+
