@@ -1,10 +1,12 @@
 # Docker images for machine learning
 ## jupyter_base
 Jupyter notebook用を利用するためのDockerイメージです。特徴は
+
 * 必要最低限のパッケージのみインストール
 * Jupyter notebookでコード補完が効く
 * ホスト側の領域をゲスト側にマウントし永続化
 * ゲストのJupyter notebookに外部から接続可能
+
 です。
 
 ## Jupyter notebook接続用パスワードの設定
@@ -44,11 +46,11 @@ $ ./docker_build.sh
 ```
 $ ./docker_run.sh
 ```
-とするとコンテナが起動し、ホスト側からブラウザで"http://localhost:8888"にアクセスするとJupyter notebookに接続できます。パスワードが求められるので（ハッシュ化する前の）パスワードを入力すると接続できます。
+とするとコンテナが起動し、ホスト側からブラウザで http://localhost:8888 にアクセスするとJupyter notebookに接続できます。パスワードが求められるので（ハッシュ化する前の）パスワードを入力すると接続できます。
 
 ## スクリプトの保存先
 ホスト側の./workディレクトリをゲスト側の~/workディレクトリにマウントしておりJupyter notebookで保存したノートブックはホスト側に保存されます。
 
 ## 外部からの接続
-外部からブラウザで http://(ホスト側のIPアドレス):8888とするとJupyter notebookに接続できます。
+外部からブラウザで http://(ホスト側のIPアドレス):8888 にアクセスするとJupyter notebookに接続できます。
 
