@@ -22,8 +22,7 @@ RUN apt update \
 # run the following script in the container,
 #
 # $ python3 scripts/pass.py
-#ARG JUPYTER_PASSWD=''
-ARG JUPYTER_PASSWD='sha1:e5007d4628a4:0713200de4f55dbf109b74597e390a3a9593e240'
+ARG JUPYTER_PASSWD=''
 
 # User name
 ARG NB_USER='jupyter'
