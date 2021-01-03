@@ -4,7 +4,7 @@ if [ ! -d ./work ]; then
 	mkdir work
 fi
 
-NB_USER='subaru'
+NB_USER='jupyter'
 HOST_PORT=8888
 GUEST_PORT=8888
 CONTAINER_NAME='jupyter'

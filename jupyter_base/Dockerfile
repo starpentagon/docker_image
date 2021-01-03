@@ -11,15 +11,22 @@ RUN apt update \
  && apt -y install jupyter-notebook
 
 # Jupyter notebook hashed password
-# Set hashed password(ex. 'sha1:25e2bc817b10:917f1e38841d80dfa40535f60a88bc83c5228297')
 ## $ python3
 ## >>> from notebook.auth import passwd
 ## >>> passwd()
-## 'sha1:25e2bc817b10:917f1e38841d80dfa40535f60a88bc83c5228297'
-ARG JUPYTER_PASSWD=''
+#
+# or enter this docker container,
+#
+# $ docker run --rm -it jupyter_base
+# 
+# run the following script in the container,
+#
+# $ python3 scripts/pass.py
+#ARG JUPYTER_PASSWD=''
+ARG JUPYTER_PASSWD='sha1:e5007d4628a4:0713200de4f55dbf109b74597e390a3a9593e240'
 
 # User name
-ARG NB_USER='subaru'    # Set your user name
+ARG NB_USER='jupyter'
 
 # Add user
 ARG NB_UID="1000"
@@ -28,23 +35,12 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER
 USER $NB_UID
 WORKDIR /home/$NB_USER
 
+# Copy the scripts for hash password and notebook server config.
+COPY ./scripts /home/$NB_USER/scripts
+
 # Generate a notebook server config
-RUN rm -rf .jupyter
-RUN jupyter notebook --generate-config
-
-# Modify server config
-RUN mv .jupyter/jupyter_notebook_config.py .jupyter/jupyter_notebook_config.py.old \ 
-&& cat .jupyter/jupyter_notebook_config.py.old | \
-sed "s/^#c.NotebookApp.ip = 'localhost'/c.NotebookApp.ip = '*'/g" | \
-sed "s/^#c.NotebookApp.open_browser = True/c.NotebookApp.open_browser = False/g" | \
-sed "s/^#c.NotebookApp.port = 8888/c.NotebookApp.port = 8888/g" | \
-sed "s/^#c.NotebookApp.password = ''/c.NotebookApp.password = '$JUPYTER_PASSWD'/g"> .jupyter/jupyter_notebook_config.py
-
-# Hashed password script
-RUN echo "from notebook.auth import passwd" > pass.py \
-&& echo "" >> pass.py \
-&& echo "print('Please set the following JUPYTER_PASSWD variable in Dockerfile.')" >> pass.py \
-&& echo "print('ARG JUPYTER_PASSWD=\'{}\''.format(passwd()))" >> pass.py
+RUN jupyter notebook -y --generate-config
+RUN ./scripts/notebook_config.sh $JUPYTER_PASSWD
 
 # working directory
 RUN mkdir work
