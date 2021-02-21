@@ -20,7 +20,7 @@ $ docker run --rm -it jupyter_base
 ```
 でコンテナに入ります。コンテナ内で
 ```
-$ python3 ~/pass.py
+$ python3 ~/scripts/pass.py
 ```
 を実行するとパスワードを聞かれるので入力すると
 ```
