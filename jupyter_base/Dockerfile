@@ -6,9 +6,9 @@ FROM ubuntu:focal-20201106@sha256:4e4bc990609ed865e07afc8427c30ffdddca5153fd4e82
 USER root
 
 # Install jupyter notebook
-RUN apt update \
- && apt -y upgrade \
- && apt -y install jupyter-notebook
+RUN apt-get update \
+ && apt-get -y upgrade \
+ && apt-get -y --no-install-recommends install jupyter-notebook
 
 # Jupyter notebook hashed password
 ## $ python3
