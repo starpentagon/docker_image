@@ -10,5 +10,5 @@ GUEST_PORT=8888
 CONTAINER_NAME='jupyter'
 IMAGE_NAME='nvidia_docker_base'
 
-docker run --rm -v `pwd`/work:/home/$NB_USER/work -p $HOST_PORT:$GUEST_PORT --name $CONTAINER_NAME -it $IMAGE_NAME jupyter notebook
+docker run --gpus all --rm -v `pwd`/work:/home/$NB_USER/work -p $HOST_PORT:$GUEST_PORT --name $CONTAINER_NAME -it $IMAGE_NAME jupyter notebook
  
