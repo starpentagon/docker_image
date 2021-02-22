@@ -1,11 +1,19 @@
 # CUDA 11.2 base Ubuntu 20.04
 FROM nvidia/cuda:11.2.1-base-ubuntu20.04
+ARG DEBIAN_FRONTEND=noninteractive
+
 USER root
 
 # Install jupyter notebook
-RUN apt update \
- && apt -y upgrade \
- && apt -y install jupyter-notebook
+RUN apt-get update \
+ && apt-get -y upgrade \
+ && apt-get -y --no-install-recommends install jupyter-notebook \
+ && apt-get -y --no-install-recommends install python3-pip \
+ && apt-get -y --no-install-recommends install cuda-11-0 \
+ && apt-get -y --no-install-recommends install libcudnn8
+
+# Install matplotlib and tensorflow
+RUN pip3 install matplotlib tensorflow
 
 # Jupyter notebook hashed password
 ## $ python3
