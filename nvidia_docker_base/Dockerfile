@@ -13,8 +13,8 @@ RUN apt-get update \
  && apt-get -y --no-install-recommends install cuda-11-0 \
  && apt-get -y --no-install-recommends install libcudnn8
 
-# Install matplotlib and tensorflow
-RUN pip3 install tensorflow matplotlib
+# Install matplotlib, tensorflow and sklearn
+RUN pip3 install tensorflow matplotlib scikit-learn
 
 # Jupyter notebook hashed password
 ## $ python3
