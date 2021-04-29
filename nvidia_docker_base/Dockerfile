@@ -15,6 +15,7 @@ RUN apt-get update \
 
 # Install matplotlib, tensorflow and sklearn
 RUN pip3 install tensorflow matplotlib scikit-learn
+RUN pip3 install pandas
 
 # Jupyter notebook hashed password
 ## $ python3
