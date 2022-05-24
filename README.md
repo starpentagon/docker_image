@@ -1,6 +1,6 @@
 # Docker images for machine learning
 ## jupyter_base
-Jupyter notebook用を利用するためのDockerイメージです。特徴は
+Jupyter notebookを利用するためのDockerイメージです。特徴は
 
 * 必要最低限のパッケージのみインストール
 * Jupyter notebookでコード補完が効く
